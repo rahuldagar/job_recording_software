@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<%@ Register src="View_Drop_D.ascx" tagname="View_Drop_D" tagprefix="uc1" %>
+
+<%@ Register src="Login_Status.ascx" tagname="Login_Status" tagprefix="uc2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1 style="font-style: italic">
+                    Optimus Solutions</h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        <uc2:Login_Status ID="Login_Status1" runat="server" />                        
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+
+
+            <div class="clear hideSkiplink"  id="Default_Div">
+                <asp:Menu ID="Default_Menu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+
+
+            
+            <div class="clear hideSkiplink" id="Engineer_Div">
+                <asp:Menu ID="Engineer_Menu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Book_Engineer.aspx" Text="Book"/>
+                        <asp:MenuItem NavigateUrl="~/View_Engineer.aspx" Text="View Activities"/>
+                        <asp:MenuItem NavigateUrl="~/Start_Engineer.aspx" Text="Start Activity"/>
+                        <asp:MenuItem NavigateUrl="~/Finish_Engineer.aspx" Text="Finish Activity"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+
+
+            
+            <div class="clear hideSkiplink" id="Team_Leader_Div">
+                <asp:Menu ID="Team_Leader_Menu" runat="server" CssClass="menu" 
+                    EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" 
+                    onmenuitemclick="Team_Leader_Menu_MenuItemClick">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Book_Engineer.aspx" Text="Book Self"/>
+                         <asp:MenuItem NavigateUrl="~/Book_Other_TL.aspx" Text="Book Other"/>
+                        <asp:MenuItem NavigateUrl="~/View_TL.aspx" Text="View Activities"/>
+                        <asp:MenuItem NavigateUrl="~/Start_Engineer.aspx" Text="Start Activity"/>
+                        <asp:MenuItem NavigateUrl="~/Finish_Engineer.aspx" Text="Finish Activity"/>
+                    </Items>
+                </asp:Menu>
+            </div>
+
+
+            
+            
+            <div class="clear hideSkiplink" id="Manger_Div">
+                <asp:Menu ID="Manager_Menu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/View_Manager.aspx" Text="View Activities"/>                      
+                    </Items>
+                </asp:Menu>
+            </div>
+
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                <uc1:View_Drop_D ID="View_Drop_D1" runat="server" />
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
